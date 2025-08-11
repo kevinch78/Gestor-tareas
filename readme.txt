@@ -26,7 +26,7 @@ Incluye **Swagger UI** para documentación y pruebas interactivas.
 
 1. **Clonar el repositorio**
    ```bash
-   git clone https://github.com/tu-usuario/gestor-tareas.git
+   git clone https://github.com/kevinch78/Gestor-tareas.git
    cd gestor-tareas
 2. **Crear archivo .env en la raiz**
 PORT=3000

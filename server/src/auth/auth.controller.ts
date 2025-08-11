@@ -9,7 +9,6 @@ export class AuthController {
 
   @Post('register')
   async register(@Body() dto: RegisterDto) {
-    // crea usuario y devuelve token
     return this.authService.register(dto.email, dto.password);
   }
 
@@ -17,7 +16,7 @@ export class AuthController {
   @Post('login')
   async login(@Body() dto: LoginDto) {
     const validated = await this.authService.validateUser(dto.email, dto.password);
-    if (!validated) throw new Error('Invalid credentials'); // más abajo cambiamos por UnauthorizedException
+    if (!validated) throw new Error('Invalid credentials'); 
     return this.authService.login(validated);
   }
 }

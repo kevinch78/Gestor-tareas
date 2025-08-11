@@ -12,7 +12,6 @@ export class AuthService {
     if (!user) return null;
     const valid = await bcrypt.compare(password, user.password);
     if (!valid) return null;
-    // quitamos password antes de devolver
     const { password: _p, ...result } = user as any;
     return result;
   }
@@ -26,7 +25,6 @@ export class AuthService {
   }
 
   async register(email: string, password: string) {
-    // crea usuario y devuelve token directamente (opcional) o devuelve usuario
     const user = await this.usersService.create(email, password);
     return this.login(user);
   }

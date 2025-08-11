@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/api_provider.dart';
 import 'tasks_page.dart';
-import 'register_page.dart';
 import '../../core/constants.dart'; 
 
-class LoginPage extends ConsumerStatefulWidget {
-  const LoginPage({super.key});
+class RegisterPage extends ConsumerStatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  ConsumerState<LoginPage> createState() => _LoginPageState();
+  ConsumerState<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends ConsumerState<LoginPage> {
+class _RegisterPageState extends ConsumerState<RegisterPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   bool loading = false;
@@ -24,14 +23,14 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     super.dispose();
   }
 
-  Future<void> _login() async {
+  Future<void> _register() async {
     if (loading) return;
     setState(() => loading = true);
     final api = ref.read(apiServiceProvider);
     final tokenStorage = ref.read(tokenStorageProvider);
 
     try {
-      final token = await api.login(emailController.text.trim(), passwordController.text.trim());
+      final token = await api.register(emailController.text.trim(), passwordController.text.trim());
       await tokenStorage.saveToken(token);
       api.setToken(token);
       if (!mounted) return;
@@ -58,10 +57,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.task_alt, size: 80, color: AppConstants.primaryColor),
+                const Icon(Icons.person_add, size: 80, color: AppConstants.primaryColor),
                 const SizedBox(height: 20),
                 Text(
-                  'Iniciar Sesión',
+                  'Crear Cuenta',
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                         color: AppConstants.primaryColor,
                         fontWeight: FontWeight.bold,
@@ -80,19 +79,14 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 ),
                 const SizedBox(height: 24),
                 ElevatedButton(
-                  onPressed: _login,
+                  onPressed: _register,
                   child: loading
                       ? const SizedBox(
                           height: 20,
                           width: 20,
                           child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
                         )
-                      : const Text('Iniciar Sesión'),
-                ),
-                const SizedBox(height: 12),
-                TextButton(
-                  onPressed: loading ? null : () => Navigator.push(context, MaterialPageRoute(builder: (_) => const RegisterPage())),
-                  child: const Text('¿No tienes cuenta? Regístrate', style: TextStyle(color: AppConstants.primaryColor)),
+                      : const Text('Crear Cuenta'),
                 ),
               ],
             ),

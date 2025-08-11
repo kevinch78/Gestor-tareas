@@ -1,0 +1,17 @@
+# Arquitectura del Proyecto
+
+## Estructura General
+- **/mobile**: Frontend en Flutter con Riverpod, Dio, y diseño neón/videojuego.
+- **/server**: Backend en NestJS con TypeORM, JWT, y Swagger.
+- **/screenshots**: Imágenes de la app y despliegue.
+- **/ai-conversations**: Log del uso de IA (Grok).
+- **/docs**: Documentación técnica.
+
+## Decisiones Clave
+- **Autenticación**: JWT con guards para seguridad.
+- **Relaciones**: User-Task para filtrado por usuario.
+- **Despliegue**: Render para backend, Flutter para frontend.
+
+## Notas
+- Migraciones en TypeORM aseguran la relación User-Task.
+- Diseño optimizado con gradientes y sombras para UX.

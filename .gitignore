@@ -1,0 +1,39 @@
+# Ignorar archivos generados por Node.js/NestJS
+node_modules/
+dist/
+*.log
+npm-debug.log*
+
+# Ignorar archivos generados por Flutter
+/mobile/.dart_tool/
+.mobile/.flutter-plugins
+/mobile/.flutter-plugins-dependencies
+/mobile/.packages
+/mobile/.pub-cache/
+.mobile/build/
+.mobile/.metadata
+/mobile/*.apk
+/mobile/*.aab
+
+# Ignorar archivos de configuración local
+.env
+*.env.local
+*.env.development
+*.env.production
+
+# Ignorar archivos de Docker (si no usas un volumen)
+docker-compose.override.yml
+
+# Ignorar archivos de IDEs
+.idea/
+*.iml
+.vscode/
+
+# Ignorar archivos temporales
+*.swp
+*~
+.DS_Store
+
+# Ignorar base de datos local (si no usas un contenedor)
+*.sqlite
+*.db
